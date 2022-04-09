@@ -15,7 +15,7 @@ export default function Header(){
             </View>
             <View style={styles.logoHeader}>
                <Image 
-                source={ require('../assets/logo-mitienda.png')}
+                source={ require('../assets/logo-horizontal.png')}
                 style={styles.logo}
                />
             </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
       },
       logo:{
-          width: 50,
-          height:50
+          width: 150,
+          height: 29
       }
 });

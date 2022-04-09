@@ -1,42 +1,56 @@
 import {
+    FlatList,
     StyleSheet,
     Text,
-    TouchableOpacity,
     View
 } from 'react-native';
+import React, {useState} from 'react';
 
 import Colors from '../constantes/Colors';
 
 export default function Filtros(){
+    const [ listCategorias, setListCategorias ] = useState([{id:1, value:'Mujer', active:true},{id:2, value:'Hombre', active:false},{id:3, value:'Niños', active:false},{id:4, value:'Mas', active:false}]);
+    const [ categoriasSelected, setCategoriasSelected ] = useState({});
+
+    const renderItem = data => (
+       
+      <Text 
+        style={ data.item.active === true ? styles.listItemActive : styles.listItem } 
+        >
+          {data.item.value}
+      </Text>
+      )
  return(
-        <TouchableOpacity style={styles.containerCat}>
+        
             <View style={styles.listFilter}>
-                <Text style={styles.listItemActive}>Mujer</Text>
-                <Text style={styles.listItem}>Hombre</Text>
-                <Text style={styles.listItem}>Niño</Text>
-                <Text style={styles.listItem}>Más</Text>
-            </View> 
-        </TouchableOpacity>
+                <FlatList
+                    data={listCategorias}
+                    renderItem={renderItem}
+                    keyExtractor={ item => item.id }
+                    horizontal={true}
+                />
+            </View>
+
+             
  )
 }
 const styles = StyleSheet.create({
-    containerCat:{
-        //flex:1
-        marginTop:20
-    },
+    
     listFilter:{
-        flex:1,
-        flexDirection: "row",
-        alignItems: 'center',
-        justifyContent: "space-between",
-        paddingBottom:20
+        flex:4,
+        height: 250
     },
     listItem:{
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.primary,
+        borderWidth: 2,
+        borderColor: Colors.grey,
+        color: Colors.grey,
+        paddingHorizontal:15,
         padding:10,
+        borderRadius:10,
         fontSize:15,
-        height: 40
+        height: 40,
+        alignItems: 'center',
+        margin: 10
     },
     listItemActive:{
         borderWidth: 2,
@@ -46,6 +60,8 @@ const styles = StyleSheet.create({
         padding:10,
         borderRadius:10,
         fontSize:15,
-        height: 40
+        height: 40,
+        alignItems: 'center',
+        margin: 10
     }
 });
