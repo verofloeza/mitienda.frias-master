@@ -86,11 +86,13 @@ const Grid = props => {
         textAlign: 'center',
         color: Colors.primary,
         fontWeight: 'bold',
+        fontFamily: 'MontserratBold'
     },
     marca:{
         textAlign: 'center',
         fontSize: 18,
         color: Colors.accent,
+        fontFamily: 'RobotoBold'
     },
     item:{
         width: '50%',

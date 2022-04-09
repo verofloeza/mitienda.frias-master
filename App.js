@@ -11,16 +11,13 @@ import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 export default function App() {
-  /*const [loaded] = useFonts({
-    OpenSans: require('./assets/fonts/OpenSans/OpenSans-Regular.ttf'),
+  const [loaded] = useFonts({
     MontserratBold: require('./assets/fonts/Montserrat/Montserrat-Bold.ttf'),
     RobotoBold: require('./assets/fonts/Roboto/Roboto-Bold.ttf'),
     Roboto: require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
   });
 
-  if (!loaded) {
-    return (<AppLoading />);
-  }*/
+  
   const [userProduct, setUserProduct] = useState(null);
 
   const handlerGrid = selectedProduct =>(
@@ -32,7 +29,9 @@ export default function App() {
   if (userProduct != null){
     content = <ProductDetails onBackGrid={handlerGrid}/>;
   }
-
+  if (!loaded) {
+    return <AppLoading />
+  }
   return (
     <SafeAreaView style={styles.container}>
 

@@ -57,6 +57,7 @@ export default function ProductDetails(props) {
         fontWeight: 'bold',
         color: Colors.primary,
         textAlign: 'center',
+        fontFamily: 'MontserratBold'
     },
     marca:{
         width: '100%',
@@ -65,12 +66,14 @@ export default function ProductDetails(props) {
         color: Colors.accent,
         paddingBottom: 30,
         textAlign: 'center',
+        fontFamily: 'RobotoBold'
     },
     descripcion:{
         width: '100%',
         fontSize: 12,
         paddingBottom: 30,
         textAlign: 'center',
+        fontFamily: 'Roboto'
     }
   });
   
