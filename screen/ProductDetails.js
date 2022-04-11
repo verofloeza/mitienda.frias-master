@@ -10,7 +10,7 @@ import {
 import Colors from '../constantes/Colors';
 
 export default function ProductDetails(props) {
-    console.log(props)
+    
     return (
         <ScrollView style={styles.containerGrid}>
             <Image 
