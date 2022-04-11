@@ -15,21 +15,24 @@ const Catalogo = props => {
     const [ listProductos, setListProductos ] = useState([{id:1, value:'Producto 1', marca:'Marca'},{id:2,  value:'Producto 2', marca:'Marca'},{id:3,  value:'Producto 3', marca:'Marca'},{id:4,  value:'Producto 4', marca:'Marca'}]);
     const [ productosSelected, setProductosSelected ] = useState({});
 
-    const renderProductos = data =>(
-        <Card onPress={props.onProductDetails}>
-            <Image 
-                source={require('../assets/sin-imagen.jpg')}
-                style={styles.fotoProducto} 
-            />
-            <Text style={styles.title}>{data.item.value}</Text>
-            <Text style={styles.marca}>{data.item.marca}</Text>
+
+    const renderProductos = ( data) =>(
+        <Card>
+            <TouchableOpacity onPress={props.onProductDetails}>
+                <Image 
+                    source={require('../assets/sin-imagen.jpg')}
+                    style={styles.fotoProducto} 
+                />
+                <Text style={styles.title}>{data.item.value}</Text>
+                <Text style={styles.marca}>{data.item.marca}</Text>
+            </TouchableOpacity>
         </Card>
     )
 
  return(
-    <View style={{flexDirection: 'row', flex: 22}}> 
-        
-        <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
+    <View > 
+        {/*style={{flexDirection: 'row', flex: 22}}*/}
+       {/*} <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
             <Image 
                 source={require('../assets/sin-imagen.jpg')}
                 style={styles.fotoProducto} 
@@ -45,14 +48,15 @@ const Catalogo = props => {
             <Text style={styles.title}>Producto 2</Text>
             <Text style={styles.marca}>Marca</Text> 
         </TouchableOpacity>
-        
-        {/*<FlatList
+ */}
+        <FlatList
             data={listProductos}
-            renderItem={renderProductos}
             keyExtractor={ item => item.id }
             numColumns={2}
             columnWrapperStyle={styles.lista}
- />*/}
+            renderItem={renderProductos}
+            extraData={props}
+        />
     </View>
      
     
