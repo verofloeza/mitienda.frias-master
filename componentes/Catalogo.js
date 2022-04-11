@@ -1,68 +1,69 @@
 import {
+    FlatList,
     Image,
     StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
+import React, { useState }  from 'react';
 
+import Card from './Card';
 import Colors from '../constantes/Colors';
-import React from 'react';
 
 const Catalogo = props => {
-    
+    const [ listProductos, setListProductos ] = useState([{id:1, value:'Producto 1', marca:'Marca'},{id:2,  value:'Producto 2', marca:'Marca'},{id:3,  value:'Producto 3', marca:'Marca'},{id:4,  value:'Producto 4', marca:'Marca'}]);
+    const [ productosSelected, setProductosSelected ] = useState({});
+
+    const renderProductos = data =>(
+        <Card>
+            <Image 
+                source={require('../assets/sin-imagen.jpg')}
+                style={styles.fotoProducto} 
+            />
+            <Text style={styles.title}>{data.item.value}</Text>
+            <Text style={styles.marca}>{data.item.marca}</Text>
+        </Card>
+    )
+
  return(
-    <View style={styles.containerList}> 
-        <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-            <Image 
-                source={require('../assets/sin-imagen.jpg')}
-                style={styles.fotoProducto} 
-            />
-            <Text style={styles.title}>Producto 1</Text>
-            <Text style={styles.marca}>Marca</Text> 
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
-            <Image 
-                source={require('../assets/sin-imagen.jpg')}
-                style={styles.fotoProducto} 
-            />
-            <Text style={styles.title}>Producto 2</Text>
-            <Text style={styles.marca}>Marca</Text> 
-        </TouchableOpacity>
+    <View> 
+        <FlatList
+            data={listProductos}
+            renderItem={renderProductos}
+            keyExtractor={ item => item.id }
+            numColumns={2}
+            columnWrapperStyle={styles.lista} 
+        /> 
     </View>
      
     
  )
 }
 const styles = StyleSheet.create({
+    lista:{
+        flex: 1,
+        justifyContent: "space-around"
+    },
     fotoProducto:{
         width: '95%',
         height: 200,
         borderRadius: 10
     },
     title:{
-        width: '100%',
         fontSize:22,
+        textAlign: 'center',
         color: Colors.primary,
         fontWeight: 'bold',
-        justifyContent: 'center',
+        fontFamily: 'MontserratBold'
     },
     marca:{
-        width: '100%',
+        textAlign: 'center',
         fontSize: 18,
         color: Colors.accent,
-        justifyContent: 'center',
+        fontFamily: 'RobotoBold'
     },
-    item:{
-        width: '50%',
-        justifyContent: 'center',
-        alignContent: 'center',
-        padding: 10
-    },
-    containerList:{
-        flexDirection: 'row',
-        marginTop:20
-    }
+    
 });
 
 export default Catalogo;

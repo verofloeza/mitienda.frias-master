@@ -6,16 +6,18 @@ import {
     View
 } from 'react-native';
 
+import Catalogo from '../componentes/Catalogo';
 import Colors from '../constantes/Colors';
 import Filtros from '../componentes/Filtros';
 import { useState } from 'react';
 
 const Grid = props => {
-
+    
     return (
         <View style={styles.containerGrid}>
             <Filtros style={styles.filtros}/>
-            <View style={styles.containerList}> 
+            <Catalogo style={styles.containerList} onProductDetails={props.onProductDetails}/>
+            {/*<View style={styles.containerList}> 
                 <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
                     <Image 
                         source={require('../assets/sin-imagen.jpg')}
@@ -50,7 +52,7 @@ const Grid = props => {
                     <Text style={styles.title}>Producto 2</Text>
                     <Text style={styles.marca}>Marca</Text> 
                 </TouchableOpacity>
-            </View>
+    </View>*/}
         </View>
         
     );
