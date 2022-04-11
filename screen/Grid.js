@@ -17,42 +17,7 @@ const Grid = props => {
         <View style={styles.containerGrid}>
             <Filtros style={styles.filtros}/>
             <Catalogo style={styles.containerList} onProductDetails={props.onProductDetails}/>
-            {/*<View style={styles.containerList}> 
-                <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-                    <Image 
-                        source={require('../assets/sin-imagen.jpg')}
-                        style={styles.fotoProducto} 
-                    />
-                    <Text style={styles.title}>Producto 1</Text>
-                    <Text style={styles.marca}>Marca</Text> 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-                    <Image 
-                        source={require('../assets/sin-imagen.jpg')}
-                        style={styles.fotoProducto} 
-                    />
-                    <Text style={styles.title}>Producto 2</Text>
-                    <Text style={styles.marca}>Marca</Text> 
-                </TouchableOpacity>
-            </View>
-            <View style={styles.containerList}> 
-                <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-                    <Image 
-                        source={require('../assets/sin-imagen.jpg')}
-                        style={styles.fotoProducto} 
-                    />
-                    <Text style={styles.title}>Producto 1</Text>
-                    <Text style={styles.marca}>Marca</Text> 
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-                    <Image 
-                        source={require('../assets/sin-imagen.jpg')}
-                        style={styles.fotoProducto} 
-                    />
-                    <Text style={styles.title}>Producto 2</Text>
-                    <Text style={styles.marca}>Marca</Text> 
-                </TouchableOpacity>
-    </View>*/}
+            
         </View>
         
     );

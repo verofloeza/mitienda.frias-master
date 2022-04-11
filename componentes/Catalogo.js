@@ -16,7 +16,7 @@ const Catalogo = props => {
     const [ productosSelected, setProductosSelected ] = useState({});
 
     const renderProductos = data =>(
-        <Card>
+        <Card onPress={props.onProductDetails}>
             <Image 
                 source={require('../assets/sin-imagen.jpg')}
                 style={styles.fotoProducto} 
@@ -27,14 +27,32 @@ const Catalogo = props => {
     )
 
  return(
-    <View> 
-        <FlatList
+    <View style={{flexDirection: 'row', flex: 22}}> 
+        
+        <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
+            <Image 
+                source={require('../assets/sin-imagen.jpg')}
+                style={styles.fotoProducto} 
+            />
+            <Text style={styles.title}>Producto 1</Text>
+            <Text style={styles.marca}>Marca</Text> 
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.item}>
+            <Image 
+                source={require('../assets/sin-imagen.jpg')}
+                style={styles.fotoProducto} 
+            />
+            <Text style={styles.title}>Producto 2</Text>
+            <Text style={styles.marca}>Marca</Text> 
+        </TouchableOpacity>
+        
+        {/*<FlatList
             data={listProductos}
             renderItem={renderProductos}
             keyExtractor={ item => item.id }
             numColumns={2}
-            columnWrapperStyle={styles.lista} 
-        /> 
+            columnWrapperStyle={styles.lista}
+ />*/}
     </View>
      
     
@@ -42,7 +60,7 @@ const Catalogo = props => {
 }
 const styles = StyleSheet.create({
     lista:{
-        flex: 1,
+        flex: 0.5,
         justifyContent: "space-around"
     },
     fotoProducto:{
@@ -63,7 +81,11 @@ const styles = StyleSheet.create({
         color: Colors.accent,
         fontFamily: 'RobotoBold'
     },
-    
+    item:{
+        width: '50%',
+        alignContent: 'center',
+        padding: 10,
+    },
 });
 
 export default Catalogo;
