@@ -27,7 +27,7 @@ export default function App() {
   let content = <Grid onProductDetails={handlerGrid}/>;;
 
   if (userProduct != null){
-    content = <ProductDetails onBackGrid={handlerGrid}/>;
+    content = <ProductDetails onBackGrid={handlerGrid} userProduct={userProduct}/>;
   }
   if (!loaded) {
     return <AppLoading />
