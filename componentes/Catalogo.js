@@ -31,24 +31,6 @@ const Catalogo = props => {
 
  return(
     <View > 
-        {/*style={{flexDirection: 'row', flex: 22}}*/}
-       {/*} <TouchableOpacity style={styles.item}  onPress={props.onProductDetails}>
-            <Image 
-                source={require('../assets/sin-imagen.jpg')}
-                style={styles.fotoProducto} 
-            />
-            <Text style={styles.title}>Producto 1</Text>
-            <Text style={styles.marca}>Marca</Text> 
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
-            <Image 
-                source={require('../assets/sin-imagen.jpg')}
-                style={styles.fotoProducto} 
-            />
-            <Text style={styles.title}>Producto 2</Text>
-            <Text style={styles.marca}>Marca</Text> 
-        </TouchableOpacity>
- */}
         <FlatList
             data={listProductos}
             keyExtractor={ item => item.id }
@@ -84,11 +66,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: Colors.accent,
         fontFamily: 'RobotoBold'
-    },
-    item:{
-        width: '50%',
-        alignContent: 'center',
-        padding: 10,
     },
 });
 
