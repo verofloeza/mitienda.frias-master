@@ -11,19 +11,19 @@ import React, { useState }  from 'react';
 import Card from './Card';
 import Colors from '../constantes/Colors';
 
-const Catalogo = props => {
+const Catalogo = (props, {navigation : {navigate}}) => {
     const [ listProductos, setListProductos ] = useState([{id:1, value:'Producto 1', marca:'Marca'},{id:2,  value:'Producto 2', marca:'Marca'},{id:3,  value:'Producto 3', marca:'Marca'},{id:4,  value:'Producto 4', marca:'Marca'}]);
     const [ productosSelected, setProductosSelected ] = useState();
     
     const handlerSelectedProduct = id => {
-        props.onProductDetails(listProductos.filter( item => item.id === id)[0])
+       props.onProductDetails(listProductos.filter( item => item.id === id)[0])
+        
     }
-    
-
-
+    console.log(props)
+    {/*<TouchableOpacity onPress={handlerSelectedProduct.bind(this, data.item.id)}>*/}
     const renderProductos = ( data) =>(
         <Card>
-            <TouchableOpacity onPress={handlerSelectedProduct.bind(this, data.item.id)}>
+            <TouchableOpacity onPress={() =>  navigate('Details') }>
                 <Image 
                     source={require('../assets/sin-imagen.jpg')}
                     style={styles.fotoProducto} 
