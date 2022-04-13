@@ -7,6 +7,7 @@ import AppLoading from 'expo-app-loading';
 import Grid from './screen/Grid';
 import Header from './componentes/Header';
 import ProductDetails from './screen/ProductDetails';
+import ShopNavigator from './navigation/ShopNavigation';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
@@ -32,13 +33,14 @@ export default function App() {
   if (!loaded) {
     return <AppLoading />
   }
-  return (
-    <SafeAreaView style={styles.container}>
+  {/*<SafeAreaView style={styles.container}>
 
       <Header />
 
       {content}
-    </SafeAreaView>
+  </SafeAreaView>*/}
+  return (
+    <ShopNavigator /> 
   );
 }
 

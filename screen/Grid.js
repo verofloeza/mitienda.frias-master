@@ -6,7 +6,7 @@ import {
 import Catalogo from '../componentes/Catalogo';
 import Filtros from '../componentes/Filtros';
 
-const Grid = props => {
+const Grid = (props) => {
     
     return (
         <View style={styles.containerGrid}>
