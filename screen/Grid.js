@@ -48,7 +48,6 @@ const Grid = ( {navigation}) => {
             }
         );
     }
-
     const renderProductos = ( {item}) =>(
         <Card>
             <TouchableOpacity onPress={()=>handlerDetalles(item)}>

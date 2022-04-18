@@ -72,7 +72,7 @@ export default function ProductDetails({route}) {
     },
     descripcion:{
         width: '100%',
-        fontSize: 12,
+        fontSize: 16,
         paddingBottom: 30,
         textAlign: 'center',
         fontFamily: 'Roboto'
