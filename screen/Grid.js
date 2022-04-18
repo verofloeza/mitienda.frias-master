@@ -35,9 +35,10 @@ const Grid = ( {navigation}) => {
     const handlerDetalles = (item)=>{
         navigation.navigate('Details',
             { 
-                categoryID: item.id,
+                ID: item.id,
                 name: item.value,
-                marca: item.marca
+                marca: item.marca,
+                categoria: item.categoria
             }
         );
     }

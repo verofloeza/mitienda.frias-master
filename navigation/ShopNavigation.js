@@ -20,12 +20,13 @@ const ShopNavigator =  () => {
                 initialRouteName='Home'
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: Platform.OS === 'android' ? Colors.white : '',                    
+                        backgroundColor: Platform.OS === 'android' ? Colors.white : ''
                     },
                     headerTintColor: Platform.OS === 'android' ? Colors.primary : Colors.white,
                     headerTitleStyle: {
-                        fontWeight: 'bold'
-                    }
+                        fontWeight: 'bold',
+                    },
+                    headerTitleAlign: 'center'
                 }}
             >
                 <Stack.Screen 
@@ -34,7 +35,8 @@ const ShopNavigator =  () => {
                     options={{ headerTitle: () => <Image
                         style={{ width: 150, height: 29 }}
                         source={ require('../assets/logo-horizontal.png')}
-                      /> }}
+                      />
+                     }}
                 />
                 <Stack.Screen 
                     name='Details' 
