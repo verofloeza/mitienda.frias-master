@@ -41,7 +41,7 @@ const ShopNavigator =  () => {
                 <Stack.Screen 
                     name='Details' 
                     component={ProductDetails}
-                    options={ ({route}) => ({title: route.params.name})}
+                    options={ ({route}) => ({title: route.params.categoria})}
                 />
             </Stack.Navigator>
         </NavigationContainer>

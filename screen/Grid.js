@@ -17,7 +17,7 @@ import { PRODUCTOS } from '../data/PRODUCTOS';
 const Grid = ( {navigation}) => {
 
     const [categoriaSelec, setCategoriaSelec] = useState(1);
-    const listProductos = PRODUCTOS.filter ( productos => productos.categoria === categoriaSelec )
+    const listProductos = PRODUCTOS.filter ( productos => productos.categoria === categoriaSelec );
 
     const handlerCategoria = selectedCategoria => {
         setCategoriaSelec(selectedCategoria)
@@ -33,12 +33,18 @@ const Grid = ( {navigation}) => {
     };
 
     const handlerDetalles = (item)=>{
+        let nombreCategoria;
+        CATEGORIAS.filter( categoria => {
+            if( categoria.id === item.categoria){
+                nombreCategoria = categoria.value
+            }
+        })
         navigation.navigate('Details',
             { 
                 ID: item.id,
                 name: item.value,
                 marca: item.marca,
-                categoria: item.categoria
+                categoria: nombreCategoria
             }
         );
     }
