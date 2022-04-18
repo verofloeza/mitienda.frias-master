@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
+import { CATEGORIAS } from '../data/CATEGORIAS';
 import Card from '../componentes/Card';
 import Colors from '../constantes/Colors';
 import Filtros from '../componentes/Filtros';
@@ -15,11 +16,21 @@ import { PRODUCTOS } from '../data/PRODUCTOS';
 
 const Grid = ( {navigation}) => {
 
-    const [userProduct, setUserProduct] = useState(null);
+    const [categoriaSelec, setCategoriaSelec] = useState(1);
+    const listProductos = PRODUCTOS.filter ( productos => productos.categoria === categoriaSelec )
 
-    const handlerGrid = selectedProduct =>(
-        setUserProduct(selectedProduct)
-    );
+    const handlerCategoria = selectedCategoria => {
+        setCategoriaSelec(selectedCategoria)
+        CATEGORIAS.map( 
+              itemCategoria => 
+                {
+                    itemCategoria.id === selectedCategoria ?
+                    itemCategoria.active = true
+                  :
+                    itemCategoria.active = false
+                }
+                )
+    };
 
     const handlerDetalles = (item)=>{
         navigation.navigate('Details',
@@ -47,11 +58,11 @@ const Grid = ( {navigation}) => {
     return (
         <View style={styles.containerGrid}>
             <View style={styles.filtros}>
-               <Filtros/> 
+               <Filtros handlerCategoria={handlerCategoria}/> 
             </View>
             <View style={styles.containerList}> 
                 <FlatList
-                    data={PRODUCTOS}
+                    data={listProductos}
                     keyExtractor={ item => item.id }
                     numColumns={2}
                     columnWrapperStyle={styles.lista}

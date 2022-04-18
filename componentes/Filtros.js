@@ -9,12 +9,13 @@ import React, {useState} from 'react';
 import { CATEGORIAS } from '../data/CATEGORIAS';
 import Colors from '../constantes/Colors';
 
-export default function Filtros(){
-    const [listCategoria, setListCategoria] = useState(CATEGORIAS)
+export default function Filtros( props){
+    const [listCategoria, setListCategoria] = useState(CATEGORIAS);
     const renderItem = data => (
        
       <Text 
         style={ data.item.active === true ? styles.listItemActive : styles.listItem } 
+        onPress={()=>props.handlerCategoria(data.item.id)}
         >
           {data.item.value}
       </Text>
