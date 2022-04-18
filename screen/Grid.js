@@ -1,17 +1,64 @@
 import {
+    FlatList,
+    Image,
     StyleSheet,
+    Text,
+    TouchableOpacity,
     View
 } from 'react-native';
+import React, { useState } from 'react';
 
-import Catalogo from '../componentes/Catalogo';
+import Card from '../componentes/Card';
+import Colors from '../constantes/Colors';
 import Filtros from '../componentes/Filtros';
+import { PRODUCTOS } from '../data/PRODUCTOS';
 
-const Grid = (props) => {
-    
+const Grid = ( {navigation}) => {
+
+    const [userProduct, setUserProduct] = useState(null);
+
+    const handlerGrid = selectedProduct =>(
+        setUserProduct(selectedProduct)
+    );
+
+    const handlerDetalles = (item)=>{
+        navigation.navigate('Details',
+            { 
+                categoryID: item.id,
+                name: item.value,
+                marca: item.marca
+            }
+        );
+    }
+
+    const renderProductos = ( {item}) =>(
+        <Card>
+            <TouchableOpacity onPress={()=>handlerDetalles(item)}>
+                <Image 
+                    source={require('../assets/sin-imagen.jpg')}
+                    style={styles.fotoProducto} 
+                />
+                <Text style={styles.title}>{item.value}</Text>
+                <Text style={styles.marca}>{item.marca}</Text>
+            </TouchableOpacity>
+        </Card>
+    )
+
     return (
         <View style={styles.containerGrid}>
-            <Filtros style={styles.filtros}/>
-            <Catalogo style={styles.containerList} onProductDetails={props.onProductDetails}/>
+            <View style={styles.filtros}>
+               <Filtros/> 
+            </View>
+            <View style={styles.containerList}> 
+                <FlatList
+                    data={PRODUCTOS}
+                    keyExtractor={ item => item.id }
+                    numColumns={2}
+                    columnWrapperStyle={styles.lista}
+                    renderItem={renderProductos}
+                />
+            </View>
+            
             
         </View>
         
@@ -21,24 +68,48 @@ const Grid = (props) => {
   const styles = StyleSheet.create({
     containerGrid:{
         flex:1,
+        backgroundColor: '#f6f6f6',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: "100%",
-        padding:20,
-        
+        padding:5,
     },
     filtros:{
         flex: 1,
         width: '100%',
-        height: 150,
+        height: 50,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'flex-end'
     },
     containerList:{
-        flex:12,
+        flex:5,
         flexDirection: 'row',
-        marginTop:20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'flex-end'
     },
-    
+    lista:{
+        flex: 0.5,
+        justifyContent: "space-around"
+    },
+    fotoProducto:{
+        width: '100%',
+        height: 200,
+        borderRadius: 10
+    },
+    title:{
+        fontSize:22,
+        textAlign: 'center',
+        color: Colors.primary,
+        fontWeight: 'bold',
+        fontFamily: 'MontserratBold'
+    },
+    marca:{
+        textAlign: 'center',
+        fontSize: 18,
+        color: Colors.accent,
+        fontFamily: 'RobotoBold'
+    },
   });
   export default Grid;

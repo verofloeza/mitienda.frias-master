@@ -6,12 +6,11 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
+import { CATEGORIAS } from '../data/CATEGORIAS';
 import Colors from '../constantes/Colors';
 
 export default function Filtros(){
-    const [ listCategorias, setListCategorias ] = useState([{id:1, value:'Mujer', active:true},{id:2, value:'Hombre', active:false},{id:3, value:'Niños', active:false},{id:4, value:'Mas', active:false}]);
-    const [ categoriasSelected, setCategoriasSelected ] = useState({});
-
+    const [listCategoria, setListCategoria] = useState(CATEGORIAS)
     const renderItem = data => (
        
       <Text 
@@ -24,7 +23,7 @@ export default function Filtros(){
         
             <View style={styles.listFilter}>
                 <FlatList
-                    data={listCategorias}
+                    data={listCategoria}
                     renderItem={renderItem}
                     keyExtractor={ item => item.id }
                     horizontal={true}
@@ -37,8 +36,8 @@ export default function Filtros(){
 const styles = StyleSheet.create({
     
     listFilter:{
-        flex:4,
-        height: 250
+        flex:0.5,
+        height: 50
     },
     listItem:{
         borderWidth: 2,
