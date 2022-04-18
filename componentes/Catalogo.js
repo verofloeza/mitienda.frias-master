@@ -6,30 +6,37 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import React, { useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 
+import { CATEGORIAS } from '../data/CATEGORIAS';
 import Card from './Card';
 import Colors from '../constantes/Colors';
+import { PRODUCTOS } from '../data/PRODUCTOS';
 
-const Catalogo = (props, {navigation : {navigate}}) => {
-    const [ listProductos, setListProductos ] = useState([{id:1, value:'Producto 1', marca:'Marca'},{id:2,  value:'Producto 2', marca:'Marca'},{id:3,  value:'Producto 3', marca:'Marca'},{id:4,  value:'Producto 4', marca:'Marca'}]);
-    const [ productosSelected, setProductosSelected ] = useState();
+const Catalogo = (props ) => {
+    const [ categorySelected, setCategorySelect] = useState(1);
+    const [ listProductCategory, setListProductCategory] =useState([]);
+
+    /*useEffect(() =>{
+        setListProductCategory(listProductos.filter(item => item.categoria === categorySelected))
+        console.log(listProductCategory)
+    })*/
     
-    const handlerSelectedProduct = id => {
-       props.onProductDetails(listProductos.filter( item => item.id === id)[0])
-        
+    const handlerSelectedProduct = (id) => {
+        console.log(id)
+       props.onDetalles(PRODUCTOS.filter( item => item.id === id))
+    
     }
-    console.log(props)
-    {/*<TouchableOpacity onPress={handlerSelectedProduct.bind(this, data.item.id)}>*/}
-    const renderProductos = ( data) =>(
+
+    const renderProductos = ( {item}) =>(
         <Card>
-            <TouchableOpacity onPress={() =>  navigate('Details') }>
+            <TouchableOpacity onPress={handlerSelectedProduct} item={item}>
                 <Image 
                     source={require('../assets/sin-imagen.jpg')}
                     style={styles.fotoProducto} 
                 />
-                <Text style={styles.title}>{data.item.value}</Text>
-                <Text style={styles.marca}>{data.item.marca}</Text>
+                <Text style={styles.title}>{item.value}</Text>
+                <Text style={styles.marca}>{item.marca}</Text>
             </TouchableOpacity>
         </Card>
     )
@@ -37,12 +44,11 @@ const Catalogo = (props, {navigation : {navigate}}) => {
  return(
     <View > 
         <FlatList
-            data={listProductos}
+            data={PRODUCTOS}
             keyExtractor={ item => item.id }
             numColumns={2}
             columnWrapperStyle={styles.lista}
             renderItem={renderProductos}
-            extraData={props}
         />
     </View>
      
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around"
     },
     fotoProducto:{
-        width: '95%',
+        width: '100%',
         height: 200,
         borderRadius: 10
     },
