@@ -44,7 +44,9 @@ const Grid = ( {navigation}) => {
                 ID: item.id,
                 name: item.value,
                 marca: item.marca,
-                categoria: nombreCategoria
+                categoria: nombreCategoria,
+                descripcion: item.descripcion,
+                precio: item.precio
             }
         );
     }
@@ -56,7 +58,7 @@ const Grid = ( {navigation}) => {
                     style={styles.fotoProducto} 
                 />
                 <Text style={styles.title}>{item.value}</Text>
-                <Text style={styles.marca}>{item.marca}</Text>
+                <Text style={styles.marca}>${item.precio}</Text>
             </TouchableOpacity>
         </Card>
     )
@@ -90,6 +92,7 @@ const Grid = ( {navigation}) => {
         justifyContent: 'center',
         width: "100%",
         padding:5,
+        marginBottom: 60
     },
     filtros:{
         flex: 1,

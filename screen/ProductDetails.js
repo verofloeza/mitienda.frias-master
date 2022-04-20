@@ -20,7 +20,8 @@ export default function ProductDetails({route}) {
             <View style={styles.containerText}>
                 <Text style={styles.tituloProducto}>{item.name}</Text>
                 <Text style={styles.marca}>{item.marca}</Text>
-                <Text style={styles.descripcion}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+                <Text style={styles.precio}>${item.precio}</Text>
+                <Text style={styles.descripcion}>{item.descripcion}</Text>
                 
             </View>
             
@@ -54,19 +55,26 @@ export default function ProductDetails({route}) {
     tituloProducto:{
         width: '100%',
         paddingTop: 30,
-        paddingBottom: 30,
-        fontSize: 24,
+        paddingBottom: 10,
+        fontSize: 26,
         fontWeight: 'bold',
         color: Colors.primary,
         textAlign: 'center',
         fontFamily: 'MontserratBold'
+    },
+    precio:{
+        width: '100%',
+        fontSize: 22,
+        fontFamily: 'RobotoBold',
+        textAlign: 'center',
+        paddingBottom: 30,
     },
     marca:{
         width: '100%',
         fontSize: 18,
         fontWeight: 'bold',
         color: Colors.accent,
-        paddingBottom: 30,
+        paddingBottom: 10,
         textAlign: 'center',
         fontFamily: 'RobotoBold'
     },

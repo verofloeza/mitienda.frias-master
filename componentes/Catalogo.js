@@ -16,16 +16,10 @@ import { PRODUCTOS } from '../data/PRODUCTOS';
 const Catalogo = (props ) => {
     const [ categorySelected, setCategorySelect] = useState(1);
     const [ listProductCategory, setListProductCategory] =useState([]);
-
-    /*useEffect(() =>{
-        setListProductCategory(listProductos.filter(item => item.categoria === categorySelected))
-        console.log(listProductCategory)
-    })*/
     
     const handlerSelectedProduct = (id) => {
-        console.log(id)
-       props.onDetalles(PRODUCTOS.filter( item => item.id === id))
-    
+       props.onDetalles(PRODUCTOS.filter( item => item.id === id));
+
     }
 
     const renderProductos = ( {item}) =>(
