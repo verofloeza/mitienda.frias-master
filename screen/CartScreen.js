@@ -16,8 +16,6 @@ function CartScreen() {
     <CartItem item={item} onDelete={handlerDeleteItem.bind(this, item)}/>
   )
 
-  console.log(items.length);
-
   return (
     <View style={styles.container}>     
       <View style={styles.list}>

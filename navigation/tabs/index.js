@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { AntDesign } from '@expo/vector-icons';
 import CartNavigator from '../cart';
 import { Ionicons } from '@expo/vector-icons';
+import OrdenNavigator from '../orden';
 import React from 'react';
 import ShopNavigator from '../shop';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -36,6 +38,17 @@ const TabNavigator = () => {
                         <View style={styles.item}>
                             <Ionicons name="md-cart" size={24} color={color} />
                             <Text style={{color: color}}>Carrito</Text>
+                        </View>
+                    )
+                }}
+                />
+            <BottomTabs.Screen name='OrdenTab' component={OrdenNavigator}
+                options={{
+                    
+                    tabBarIcon: ({color, focused}) => (
+                        <View style={styles.item}>
+                            <AntDesign name="solution1" size={24} color={color} />
+                            <Text style={{color: color}}>Ordenes</Text>
                         </View>
                     )
                 }}
