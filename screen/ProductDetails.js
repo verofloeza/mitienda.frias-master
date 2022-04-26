@@ -3,14 +3,20 @@ import {
     ScrollView,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View
 } from 'react-native';
 
 import Colors from '../constantes/Colors';
+import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
 export default function ProductDetails() {
     const item = useSelector(state => state.productos.selected)
+
+    const onSeleccionar = id =>{
+        console.log('Items seleccionado')
+    }
 
     return (
         <ScrollView style={styles.containerGrid}>
@@ -25,7 +31,16 @@ export default function ProductDetails() {
                 <Text style={styles.descripcion}>{item.descripcion}</Text>
                 
             </View>
-            
+            <View style={styles.buttons}>
+                <TouchableOpacity onPress={ ()=>onSeleccionar(item.id)}>
+                    <View style={styles.butonsCarrito}>
+                        <Ionicons name="md-cart" size={32} color={Colors.white} style={styles.buttonCart}>
+                            <Text style={styles.textButton}> Agregar al carrito</Text>
+                        </Ionicons> 
+                    </View>
+                    
+                </TouchableOpacity>
+            </View>
                  
         </ScrollView>
         
@@ -84,6 +99,25 @@ export default function ProductDetails() {
         fontSize: 16,
         paddingBottom: 30,
         textAlign: 'center',
+        fontFamily: 'Roboto'
+    },
+    buttons:{
+        flex:1,
+        width: '100%',
+        padding: 20,
+        marginBottom: 30,
+        bottom: 50,
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+    buttonCart:{
+        padding: 10,
+        borderRadius:10,
+        backgroundColor: Colors.accent,
+        textAlign: 'center',
+    },
+    textButton:{
+        fontSize: 20,
         fontFamily: 'Roboto'
     }
   });

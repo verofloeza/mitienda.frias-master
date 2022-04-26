@@ -84,15 +84,13 @@ const Grid = ( {navigation}) => {
         width: '100%',
         height: 50,
         justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'flex-end'
+        alignItems: 'center'
     },
     containerList:{
         flex:5,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'flex-end'
+        alignItems: 'center'
     },
     lista:{
         flex: 0.5,
