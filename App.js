@@ -1,5 +1,7 @@
 import AppLoading from 'expo-app-loading';
 import MainNavigator from './navigation';
+import { Provider } from 'react-redux';
+import store from './store';
 import { useFonts } from 'expo-font';
 
 export default function App() {
@@ -12,8 +14,11 @@ export default function App() {
   if (!loaded) {
     return <AppLoading />
   }
-
+  
   return (
-    <MainNavigator /> 
+    <Provider store={store}>
+      <MainNavigator /> 
+    </Provider>
+    
   );
 }

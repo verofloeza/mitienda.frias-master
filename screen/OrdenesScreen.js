@@ -1,12 +1,12 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 
 import Colors  from '../constantes/Colors';
-import ORDENES from '../data/ORDENES';
 import OrdenItem from '../componentes/OrdenItem';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function OrdenesScreen() {
-  const items = ORDENES;
+  const items = useSelector(state => state.ordenes.ordenes);
 
   const handlerDeleteItem = (item) => console.log('Eliminar Elemento: ' + item.name);
 

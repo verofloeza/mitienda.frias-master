@@ -3,7 +3,7 @@ import Grid from '../../screen/Grid';
 import {
     Image
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Platform } from 'react-native-web';
 import ProductDetails from '../../screen/ProductDetails';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

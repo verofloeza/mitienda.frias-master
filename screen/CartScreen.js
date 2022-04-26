@@ -1,12 +1,12 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { CART } from '../data/CART';
 import CartItem from '../componentes/CartItem';
 import Colors  from '../constantes/Colors';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function CartScreen() {
-  const items = CART;
+  const items = useSelector(state => state.carrito.cart);
   const total = 12000;
 
   const handlerConfirmCart = () => console.log('Confirmar Carrito');

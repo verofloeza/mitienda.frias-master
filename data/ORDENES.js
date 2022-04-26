@@ -1,4 +1,4 @@
-export default ORDENES = [
+export const ORDENES = [
     {
         id:1,
         fecha: 1633996712968,

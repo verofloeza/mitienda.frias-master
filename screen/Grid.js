@@ -6,49 +6,34 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { filteredProductos, selectProductos } from '../store/actions/productos.action';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { CATEGORIAS } from '../data/CATEGORIAS';
 import Card from '../componentes/Card';
 import Colors from '../constantes/Colors';
 import Filtros from '../componentes/Filtros';
-import { PRODUCTOS } from '../data/PRODUCTOS';
 
 const Grid = ( {navigation}) => {
+    const dispatch = useDispatch();
+    const categoryProductos = useSelector(state => state.productos.filteredProductos);
+    const category = useSelector(state => state.categorias.selected);
+    const categorias = useSelector(state => state.categorias.listCategorias);
 
-    const [categoriaSelec, setCategoriaSelec] = useState(1);
-    const listProductos = PRODUCTOS.filter ( productos => productos.categoria === categoriaSelec );
+    useEffect( () => {
+        dispatch(filteredProductos(category));
+      }, [])
 
-    const handlerCategoria = selectedCategoria => {
-        setCategoriaSelec(selectedCategoria)
-        CATEGORIAS.map( 
-              itemCategoria => 
-                {
-                    itemCategoria.id === selectedCategoria ?
-                    itemCategoria.active = true
-                  :
-                    itemCategoria.active = false
-                }
-                )
-    };
 
     const handlerDetalles = (item)=>{
+        dispatch(selectProductos(item.id));
         let nombreCategoria;
-        CATEGORIAS.filter( categoria => {
+        categorias.filter( categoria => {
             if( categoria.id === item.categoria){
                 nombreCategoria = categoria.value
             }
         })
-        navigation.navigate('Details',
-            { 
-                ID: item.id,
-                name: item.value,
-                marca: item.marca,
-                categoria: nombreCategoria,
-                descripcion: item.descripcion,
-                precio: item.precio
-            }
-        );
+        navigation.navigate('Details', { categoria: nombreCategoria });
     }
     const renderProductos = ( {item}) =>(
         <Card>
@@ -66,11 +51,11 @@ const Grid = ( {navigation}) => {
     return (
         <View style={styles.containerGrid}>
             <View style={styles.filtros}>
-               <Filtros handlerCategoria={handlerCategoria}/> 
+               <Filtros/> 
             </View>
-            <View style={styles.containerList}> 
+        <View style={styles.containerList}> 
                 <FlatList
-                    data={listProductos}
+                    data={categoryProductos}
                     keyExtractor={ item => item.id }
                     numColumns={2}
                     columnWrapperStyle={styles.lista}

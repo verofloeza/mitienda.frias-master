@@ -7,18 +7,19 @@ import {
 } from 'react-native';
 
 import Colors from '../constantes/Colors';
+import { useSelector } from 'react-redux';
 
-export default function ProductDetails({route}) {
-    const item = route.params;
+export default function ProductDetails() {
+    const item = useSelector(state => state.productos.selected)
 
     return (
-        <ScrollView style={styles.containerGrid} onPress={() => onSelected(item)}>
+        <ScrollView style={styles.containerGrid}>
             <Image 
                 source={require('../assets/sin-imagen.jpg')}
                 style={styles.fotoProducto} 
             />
             <View style={styles.containerText}>
-                <Text style={styles.tituloProducto}>{item.name}</Text>
+                <Text style={styles.tituloProducto}>{item.value}</Text>
                 <Text style={styles.marca}>{item.marca}</Text>
                 <Text style={styles.precio}>${item.precio}</Text>
                 <Text style={styles.descripcion}>{item.descripcion}</Text>
