@@ -1,0 +1,1 @@
+export const URL_API = 'https://mitienda-reactnative-default-rtdb.firebaseio.com'

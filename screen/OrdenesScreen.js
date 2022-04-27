@@ -1,18 +1,30 @@
 import { FlatList, StyleSheet, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { deleteOrder, getOrders } from '../store/actions/order.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors  from '../constantes/Colors';
 import OrdenItem from '../componentes/OrdenItem';
-import React from 'react';
-import { useSelector } from 'react-redux';
 
-function OrdenesScreen() {
-  const items = useSelector(state => state.ordenes.ordenes);
+function OrdenesScreen({navigation}) {
+  const items = useSelector(state => state.ordenes.items);
+  const dispatch = useDispatch();
 
-  const handlerDeleteItem = (item) => console.log('Eliminar Elemento: ' + item.name);
 
-  const renderItem = ({item}) => ( 
-    <OrdenItem item={item} onDelete={handlerDeleteItem.bind(this, item)}/>
-  )
+  const handlerDeleteItem = (id) => dispatch(deleteOrder(id));
+
+  const renderItem = (itemData) => (
+    <OrdenItem
+      item={itemData.item}
+      onDelete={handlerDeleteItem}
+    />
+)
+  useEffect(()=>{
+    const unsubscribe = navigation.addListener('focus', () => {        
+      dispatch(getOrders());
+    });  
+    return unsubscribe;      
+  }, [navigation]);
 
   return (
     <View style={styles.container}>     

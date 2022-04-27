@@ -6,16 +6,18 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constantes/Colors';
 import { Ionicons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { addItem } from '../store/actions/cart.action';
 
 export default function ProductDetails() {
-    const item = useSelector(state => state.productos.selected)
+    const item = useSelector(state => state.productos.selected);
+    const dispatch = useDispatch();
 
-    const onSeleccionar = id =>{
-        console.log('Items seleccionado')
+    const onSeleccionar = () =>{
+        dispatch(addItem(item))
     }
 
     return (
@@ -32,7 +34,7 @@ export default function ProductDetails() {
                 
             </View>
             <View style={styles.buttons}>
-                <TouchableOpacity onPress={ ()=>onSeleccionar(item.id)}>
+                <TouchableOpacity onPress={onSeleccionar}>
                     <View style={styles.butonsCarrito}>
                         <Ionicons name="md-cart" size={32} color={Colors.white} style={styles.buttonCart}>
                             <Text style={styles.textButton}> Agregar al carrito</Text>

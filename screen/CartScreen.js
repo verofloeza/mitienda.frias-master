@@ -1,16 +1,24 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { confirmCart, removeItem } from '../store/actions/cart.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CartItem from '../componentes/CartItem';
 import Colors  from '../constantes/Colors';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 function CartScreen() {
   const items = useSelector(state => state.carrito.cart);
-  const total = 12000;
+  const total = useSelector(state => state.carrito.total);
+  const dispatch = useDispatch();
 
-  const handlerConfirmCart = () => console.log('Confirmar Carrito');
-  const handlerDeleteItem = (item) => console.log('Eliminar Elemento: ' + item.name);
+  const handlerConfirmCart = () => {
+    if(items.length>0)
+      dispatch(confirmCart(items, total));
+    else
+      console.log("No hay elementos en la lista.");
+  }
+  
+  const handlerDeleteItem = id => dispatch(removeItem(id)); 
 
   const renderItem = ({item}) => ( 
     <CartItem item={item} onDelete={handlerDeleteItem.bind(this, item)}/>

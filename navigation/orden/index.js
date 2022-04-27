@@ -1,5 +1,6 @@
 import Colors from '../../constantes/Colors';
 import OrdenesScreen from '../../screen/OrdenesScreen';
+import { Platform } from 'react-native-web';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -10,9 +11,9 @@ const OrdenNavigator =  () => {
         <Stack.Navigator initialRouteName='Orden'
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: Platform.OS === 'android' ? Colors.white : ''
+                    backgroundColor: Platform.OS === 'android' ? Colors.white : Colors.white
                 },
-                headerTintColor: Platform.OS === 'android' ? Colors.primary : Colors.white,
+                headerTintColor: Platform.OS === 'android' ? Colors.white : Colors.primary,
                 headerTitleStyle: {
                     fontWeight: 'bold',
                 },
