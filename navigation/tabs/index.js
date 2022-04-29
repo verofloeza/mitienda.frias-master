@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import CartNavigator from '../cart';
 import { Ionicons } from '@expo/vector-icons';
+import LoginNavigator from '../login';
 import OrdenNavigator from '../orden';
 import React from 'react';
 import ShopNavigator from '../shop';
@@ -49,6 +50,17 @@ const TabNavigator = () => {
                         <View style={styles.item}>
                             <AntDesign name="solution1" size={24} color={color} />
                             <Text style={{color: color}}>Ordenes</Text>
+                        </View>
+                    )
+                }}
+                />
+            <BottomTabs.Screen name='LoginTab' component={LoginNavigator}
+                options={{
+                    
+                    tabBarIcon: ({color, focused}) => (
+                        <View style={styles.item}>
+                            <AntDesign name="user" size={24} color={color} />
+                            <Text style={{color: color}}>Login</Text>
                         </View>
                     )
                 }}

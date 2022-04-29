@@ -1,15 +1,14 @@
 import {
     FlatList,
-    StyleSheet,
     Text,
     View
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Colors from '../constantes/Colors';
 import React from 'react';
 import { SelectCategory } from '../store/actions/categoria.action';
 import { filteredProductos } from '../store/actions/productos.action';
+import {styles} from '../style';
 
 export default function Filtros( props){
     const dispatch = useDispatch();
@@ -51,34 +50,3 @@ export default function Filtros( props){
              
  )
 }
-const styles = StyleSheet.create({
-    
-    listFilter:{
-        flex:0.5,
-        height: 50
-    },
-    listItem:{
-        borderWidth: 2,
-        borderColor: Colors.grey,
-        color: Colors.grey,
-        paddingHorizontal:15,
-        padding:10,
-        borderRadius:10,
-        fontSize:15,
-        height: 40,
-        alignItems: 'center',
-        margin: 10
-    },
-    listItemActive:{
-        borderWidth: 2,
-        borderColor: Colors.accent,
-        color: Colors.accent,
-        paddingHorizontal:15,
-        padding:10,
-        borderRadius:10,
-        fontSize:15,
-        height: 40,
-        alignItems: 'center',
-        margin: 10
-    }
-});

@@ -1,10 +1,10 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { confirmCart, removeItem } from '../store/actions/cart.action';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CartItem from '../componentes/CartItem';
-import Colors  from '../constantes/Colors';
 import React from 'react';
+import {styles} from '../style';
 
 function CartScreen() {
   const items = useSelector(state => state.carrito.cart);
@@ -25,7 +25,7 @@ function CartScreen() {
   )
 
   return (
-    <View style={styles.container}>     
+    <View style={styles.containerCart}>     
       <View style={styles.list}>
         <FlatList
           data={items}
@@ -45,40 +45,4 @@ function CartScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 12,
-    backgroundColor: '#fff',
-    paddingBottom: 120,
-  },
-  list: {
-    flex: 1,
-  },
-  footer: {
-    padding: 6,
-    borderTopColor: Colors.accent,
-    borderTopWidth: 2,
-  },
-  confirm: {
-    backgroundColor: 'rgba(47, 72, 129, 0.7)',
-    borderRadius: 5,
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  total: {
-    flexDirection: 'row'
-  },
-  text: {
-    fontSize: 18,
-    fontFamily: 'RobotoBold',
-    padding: 8,
-    color: Colors.white
-  }
-});
-
-
 export default CartScreen;
